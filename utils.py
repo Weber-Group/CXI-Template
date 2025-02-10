@@ -96,33 +96,6 @@ class RadialAverager(object):
         return self._normalization_array
 
 
-
-
-def plot_jungfrau(x, y, f, ax=None, shading='nearest', *args, **kwargs):
-    """Plot Jungfrau detector counts.
-
-    Parameters
-    ----------
-    x, y : list of np.ndarray
-        Coordinates for each tile of the detector.
-    f : list of np.ndarray
-        Data to be plotted for each tile.
-    ax : matplotlib.axes.Axes, optional
-        Axes to plot on. If None, uses current axes.
-    shading : str, optional
-        Shading style for pcolormesh (default: 'nearest').
-
-    Returns
-    -------
-    pcm : matplotlib.collections.QuadMesh
-        The QuadMesh object created.
-    """
-    if ax is None:
-        ax = plt.gca()
-    for i in range(8):
-        pcm = ax.pcolormesh(x[i], y[i], f[i], shading=shading, *args, **kwargs)
-    return pcm
-
 def plot_jungfrau(x, y, f, ax=None, shading='nearest', *args, **kwargs):
     """Plot Jungfrau detector counts.
 
@@ -170,7 +143,7 @@ def combineRuns(runNumbers, folder, keys_to_combine, keys_to_sum, keys_to_check,
     for i,runNumber in enumerate(runNumbers):
         data = {}
         filename = f'{folder}{experiment}_Run{runNumToString(runNumber)}.h5'
-        print(filename)
+        print('Loading: ' + filename)
         with h5py.File(filename,'r') as f:
             get_leaves(f,data,verbose=verbose)
             data_array.append(data)
