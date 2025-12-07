@@ -13,4 +13,8 @@ photon_energy:
   - runs: [0, .inf]
     energy: 10 # in keV
 
+samples:
+  - runs: [0, .inf]
+    sample: '[Sample Name]'
+
 # Other user information and configurations shared across analysis notebooks can go here, or above. Whatever floats your boat.
