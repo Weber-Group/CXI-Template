@@ -29,7 +29,7 @@ Once everything is done, check if it worked by hitting the "New Launcher" `+` ic
   <img width="492" height="472" alt="Image" src="https://github.com/user-attachments/assets/38691a95-f2af-4b21-b65f-6aef25b8e28f" />
 </p>
 
-## Standard experiment to-do list.
+# Standard experiment to-do list.
 1. Set photon energy in producer, ADU cutoff to 2.5
 2. Take pedestal, dark, background, Ne, SF6 run. Background, Ne, or SF6 can be timetool calibration runs as well
 3. Run masking notebook on the dark, background, and sample run
@@ -41,16 +41,16 @@ Once everything is done, check if it worked by hitting the "New Launcher" `+` ic
 9. Run background notebook on background, Ne, SF6, and sample for baseline measurements.
 10. Run pump probe notebook on sample data.
 
-#### Notes
+### Notes
  - A pedestal is a dark run which is used to set specific detector parameters. Usually this is run once.
  - A dark run, but not a pedestal, is commonly used to mask pixels on the detector *after* the pedestal corrections.
  - Knife edge notebook is helpful for determining spot size and location of pump beam at the interaction point.
 
-## General Analysis workflow
+# General Analysis workflow
 
 For experiments following standard configuration #2, the data pipeline consists of two parts. Pre- and post-processing.
 
-### Pre-processing
+## Pre-processing
 The raw data streams in from multiple sources into the DAq and saved into `.xtc` files. These files are typically very large, and too much to handle for analyzing multiple runs at once.
 
 A pre-processing script, refered to as a "producer", is used to shrink the data down, applying light processing to acheive a more managable size.
@@ -61,10 +61,10 @@ The function `getAzIntParams()`, returns a `dict` of kwargs based on the run num
 
 The producer will save specified data to an `.h5` file for each run. These files should be much smaller, and they exist here: `/sdf/data/lcls/ds/cxi/[EXPERIMENT]/hdf5/smalldata/`, unless otherwise specified by parameters passed to the producer.
 
-#### Notes
+### Notes
 The Jungfrau-4M detector is sort-of energy resolved, so setting an image cutoff is a (very) crude way to remove unwanted background signal and sample fluorescence. To determine an appropriate ADU cutoff, use `ADU_Hist_plotter.ipynb`. This reads data directly from the `.xtc` files and builds a histogram of counts on the detector. You'll see a series of steps, the first peak should coencide with the photon energy. Any peaks before this, as long as they are low enough, can be removed by placing the ADU cutoff right above it. For instance, the ADU cutoff for SF6 is 2.5 keV.
 
-### Post-processing
+## Post-processing
 After the producer reduces the file size of the data, multiple runs can be processed within jupyter notebooks. There are template versions of these notebooks inside this repository for specific analysis tasks, such as the geometry calibration process, masking, and pump-probe plotting.
 
 #### `config.yaml`
