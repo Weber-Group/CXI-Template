@@ -3,7 +3,7 @@ Template fast-analysis code for CXI Experiments in standard configuration #2.
 ## Setup
 Use this template to make a new repository, and don't forget to edit `config.yaml` file to match the experiment.
 
-### To set up the environment that is needed for this code, run the following commands.
+### To set up the environment that is needed for this code, run the following commands. Note: you do **not** need to `pip install` anything.
 ```bash
 conda init
 ```
@@ -29,8 +29,18 @@ Once everything is done, check if it worked by hitting the "New Launcher" `+` ic
   <img width="492" height="472" alt="Image" src="https://github.com/user-attachments/assets/38691a95-f2af-4b21-b65f-6aef25b8e28f" />
 </p>
 
+#### Troubleshooting environment creation:
+ - Ensure that `~/.bash_profile` exists, and contains the following commands:
+ ```
+ # Run the code in .bashrc
+ if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+ fi
+ ```
+ - When executing code within a notebook, make sure you are using the `weber-group` kernel. In the upper right hand corner, you can change the kernel by clicking on the current kernel. There will be along list. Choose the one named `weber-group`.
+
 # Standard experiment to-do list.
-1. Set photon energy in producer, ADU cutoff to 2.5
+1. Set photon energy in producer, ADU cutoff to 2.5 
 2. Take pedestal, dark, background, Ne, SF6 run. Background, Ne, or SF6 can be timetool calibration runs as well
 3. Run masking notebook on the dark, background, and sample run
 4. Run geometry calibration notebook on SF6 run, Add geometry calibration to producer
@@ -67,24 +77,23 @@ The Jungfrau-4M detector is sort-of energy resolved, so setting an image cutoff 
 ## Post-processing
 After the producer reduces the file size of the data, multiple runs can be processed within jupyter notebooks. There are template versions of these notebooks inside this repository for specific analysis tasks, such as the geometry calibration process, masking, and pump-probe plotting.
 
-#### `config.yaml`
-To keep things clean, these notebooks pull data from `config.yaml`, which can specify general information about an experiment, such as the experiment number, data paths, photon energy, and run type. I much prefer this method as changing things across multiple notebooks can be annoying.
+#### `ADU_Hist_Plotter.ipynb`
+Used for determining ADU cutoffs for sample runs. Useful for determining fluorescence contribution to signal.
 
-#### `Mask_Maker.ipynb`
-This notebook combines three types of runs, along with pre-defined masks to generate a combined mask (`cmask`), which is then saved to a specific directory so that it is applied in the data stream. More details inside the notebook.
+#### `Compare_Runs.ipynb`
+This notebook saves the average of azimuthal averages for a run into a folder. This notebook is useful for comparing scattering between runs.
 
 #### `Geometry_Calibration.ipynb`
 Used for determining the x,y-center of the primary beam on the Jungfrau-4M as well as the cell-detector distance. These parameters are needed for proper azimuthal integration and the transform to momentum space. There are many methods in which the calibration can be done but this method fits a high-level ground state *ab initio* scattering pattern of a sample, typically SF6 to determine these parameters.
 
-#### `Background.ipynb`
-This notebook saves the average of azimuthal averages for a run into a folder called 'Backgrounds'. This notebook is useful for comparing scattering between runs.
+#### `Mask_Maker.ipynb`
+This notebook combines three types of runs, along with pre-defined masks to generate a combined mask (`cmask`), which is then saved to a specific directory so that it is applied in the data stream. More details inside the notebook.
 
-#### `ADU_Hist_Plotter.ipynb`
-Used for determining ADU cutoffs for sample runs. Useful for determining fluorescence contribution to signal.
+#### `Pump_Probe.ipynb`
+To be created.
 
+#### `Timetool_Calibration.ipynb`
+To be created.
 
-
-
-
-
-
+#### `config.yaml`
+To keep things clean, these notebooks pull data from `config.yaml`, which can specify general information about an experiment, such as the experiment number, data paths, photon energy, and run type. I much prefer this method as changing things across multiple notebooks can be annoying.
