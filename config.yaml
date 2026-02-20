@@ -1,8 +1,8 @@
 #### Config file. Used all over the place
 
 # Change EXPERIMENT when initializing a new repo for an experiment
-expNumber: cxi101342025 # Enter the full run number here, e.g. cxil1037623.
-expDir: /sdf/data/lcls/ds/cxi/cxi101342025/ # Full path to the experimental directory here e.g/ /sdf/data/lcls/ds/cxi/cxil1037623/.
+expNumber: EXPERIMENT # Enter the full run number here, e.g. cxil1037623.
+expDir: /sdf/data/lcls/ds/cxi/EXPERIMENT/ # Full path to the experimental directory here e.g/ /sdf/data/lcls/ds/cxi/cxil1037623/.
 
 # This is not used anywhere. But is useful for debugging and version control.
 template_version: 1.0
@@ -12,7 +12,7 @@ template_version: 1.0
 data_paths:
 - runs: [0, .inf]   # Add the range of runs that this path applies for. yaml parses .inf to float('inf') in python.
     # path: /sdf/data/lcls/ds/cxi/cxi101342025/hdf5/smalldata/ # Add the full data path here.
-  path: /sdf/data/lcls/ds/cxi/cxi101342025/hdf5/smalldata/
+  path: /sdf/data/lcls/ds/cxi/EXPERIMENT/hdf5/smalldata/
 # Add more data locations for specific runs if need be like this:
 #  - runs: [20, 30]
 #    path: /path/to/another/location/
