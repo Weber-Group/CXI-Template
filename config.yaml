@@ -1,20 +1,29 @@
-# Change EXPERIMENT when initializing a new repo for an experiment
+#### Config file. Used all over the place
+#### Note: the indentation guideline for yaml files is 2 spaces. Not the tab character or 4 spaces. You can set the preference used by Jupyterlab in the bottom right hand corner of the text editor.
+
+# Change EXPERIMENT when initializing a new repo for an experiment. Three places to change this.
 expNumber: EXPERIMENT # Enter the full run number here, e.g. cxil1037623.
 expDir: /sdf/data/lcls/ds/cxi/EXPERIMENT/ # Full path to the experimental directory here e.g/ /sdf/data/lcls/ds/cxi/cxil1037623/.
 
+# This is not used anywhere. But is useful for debugging and version control.
+template_version: 1.0
+xrst_version: 0.3.0
+
+## Run specific information
 data_paths:
-  - runs: [0, .inf] # Add the range of runs that this path applies for. yaml parses .inf to float('inf') in python.
-    path: /sdf/data/lcls/ds/cxi/EXPERIMENT/hdf5/smalldata/ # Add the full data path here.
+- runs: [0, .inf]   # Add the range of runs that this path applies for. yaml parses .inf to float('inf') in python.
+    # path: /sdf/data/lcls/ds/cxi/cxi101342025/hdf5/smalldata/ # Add the full data path here.
+  path: /sdf/data/lcls/ds/cxi/EXPERIMENT/hdf5/smalldata/
 # Add more data locations for specific runs if need be like this:
 #  - runs: [20, 30]
 #    path: /path/to/another/location/
 
 photon_energy:
-  - runs: [0, .inf]
-    energy: 10 # in keV
-
+- runs: [0, .inf]
+  energy: 10   # in keV
+# Sample types
 samples:
-  - runs: [0, .inf]
-    sample: '[Sample Name]'
-
-# Other user information and configurations shared across analysis notebooks can go here, or above. Whatever floats your boat.
+- runs: [0, .inf]
+  sample: '[Sample]'
+# Timetool calibration data
+tt_calibration:
