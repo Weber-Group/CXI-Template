@@ -1,12 +1,13 @@
 #### Config file. Used all over the place
+#### Note: the indentation guideline for yaml files is 2 spaces. Not the tab character or 4 spaces. You can set the preference used by Jupyterlab in the bottom right hand corner of the text editor.
 
-# Change EXPERIMENT when initializing a new repo for an experiment
+# Change EXPERIMENT when initializing a new repo for an experiment. Three places to change this.
 expNumber: EXPERIMENT # Enter the full run number here, e.g. cxil1037623.
 expDir: /sdf/data/lcls/ds/cxi/EXPERIMENT/ # Full path to the experimental directory here e.g/ /sdf/data/lcls/ds/cxi/cxil1037623/.
 
 # This is not used anywhere. But is useful for debugging and version control.
 template_version: 1.0
-
+xrst_version: 0.3.0
 
 ## Run specific information
 data_paths:
@@ -26,4 +27,3 @@ samples:
   sample: '[Sample]'
 # Timetool calibration data
 tt_calibration:
-- runs: [0, .inf]
