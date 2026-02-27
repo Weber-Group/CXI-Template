@@ -44,17 +44,16 @@ Once everything is done, check if it worked by hitting the "New Launcher" `+` ic
 2. Take pedestal, dark, background, Ne, SF6 run. Background, Ne, or SF6 can be timetool calibration runs as well
 3. Run masking notebook on the dark, background, and sample run
 4. Run geometry calibration notebook on SF6 run, Add geometry calibration to producer
-5. Run timetool calibration notebook (to be added).
+5. Run timetool calibration notebook.
 6. Take sample run, run ADU notebook to determine sample ADU cutoff
 7. Add sample ADU cutoff to producer
 8. Re-process any sample runs with new producer settings
-9. Run background notebook on background, Ne, SF6, and sample for baseline measurements.
+9. Run Compare_Runs notebook on dark, background, Ne, SF6, and sample for baseline measurements.
 10. Run pump probe notebook on sample data.
 
 ### Notes
  - A pedestal is a dark run which is used to set specific detector parameters. Usually this is run once.
  - A dark run, but not a pedestal, is commonly used to mask pixels on the detector *after* the pedestal corrections.
- - Knife edge notebook is helpful for determining spot size and location of pump beam at the interaction point.
 
 # General Analysis workflow
 
@@ -75,7 +74,9 @@ The producer will save specified data to an `.h5` file for each run. These files
 The Jungfrau-4M detector is sort-of energy resolved, so setting an image cutoff is a (very) crude way to remove unwanted background signal and sample fluorescence. To determine an appropriate ADU cutoff, use `ADU_Hist_plotter.ipynb`. This reads data directly from the `.xtc` files and builds a histogram of counts on the detector. You'll see a series of steps, the first peak should coencide with the photon energy. Any peaks before this, as long as they are low enough, can be removed by placing the ADU cutoff right above it. For instance, the ADU cutoff for SF6 is 2.5 keV.
 
 ## Post-processing
-After the producer reduces the file size of the data, multiple runs can be processed within jupyter notebooks. There are template versions of these notebooks inside this repository for specific analysis tasks, such as the geometry calibration process, masking, and pump-probe plotting.
+After the producer reduces the file size of the data, multiple runs can be processed within jupyter notebooks. There are template versions of these notebooks inside this repository for specific analysis tasks, such as the geometry calibration process, masking, and pump-probe plotting. See the index section below for more information, and see inside the notebooks for notebook-specific information.
+
+# Index
 
 #### `ADU_Hist_Plotter.ipynb`
 Used for determining ADU cutoffs for sample runs. Useful for determining fluorescence contribution to signal.
@@ -86,14 +87,17 @@ This notebook saves the average of azimuthal averages for a run into a folder. T
 #### `Geometry_Calibration.ipynb`
 Used for determining the x,y-center of the primary beam on the Jungfrau-4M as well as the cell-detector distance. These parameters are needed for proper azimuthal integration and the transform to momentum space. There are many methods in which the calibration can be done but this method fits a high-level ground state *ab initio* scattering pattern of a sample, typically SF6 to determine these parameters.
 
+#### `Knife_Edge.ipynb`
+This notebook is used typically on a knife-edge scan, which is used to determine the focal parameters of the laser. This notebook takes that data, filteres it, and fits it to an erf.
+
 #### `Mask_Maker.ipynb`
 This notebook combines three types of runs, along with pre-defined masks to generate a combined mask (`cmask`), which is then saved to a specific directory so that it is applied in the data stream. More details inside the notebook.
 
 #### `Pump_Probe.ipynb`
-To be created.
+This notebook is the main data plotter, once everything has been calibrated and is working corretly. It takes pump-probe runs, filteres the data, re-bins the time points and plots the percent difference signal, plus q- and t-lineouts.
 
 #### `Timetool_Calibration.ipynb`
-To be created.
+Used on a timetool calibration run to determine the timetool calibration parametes. Optionally, save this data directly to the `config.yaml`.
 
 #### `config.yaml`
 To keep things clean, these notebooks pull data from `config.yaml`, which can specify general information about an experiment, such as the experiment number, data paths, photon energy, and run type. I much prefer this method as changing things across multiple notebooks can be annoying.
