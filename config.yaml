@@ -7,7 +7,7 @@ expDir: /sdf/data/lcls/ds/cxi/EXPERIMENT/ # Full path to the experimental direct
 
 # This is not used anywhere. But is useful for debugging and version control.
 template_version: 1.0
-xrst_version: 0.3.0
+xrst_version: v1.0.0-beta.0
 
 ## Run specific information
 data_paths:
