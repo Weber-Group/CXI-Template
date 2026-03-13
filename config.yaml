@@ -6,7 +6,7 @@ expNumber: EXPERIMENT # Enter the full run number here, e.g. cxil1037623.
 expDir: /sdf/data/lcls/ds/cxi/EXPERIMENT/ # Full path to the experimental directory here e.g/ /sdf/data/lcls/ds/cxi/cxil1037623/.
 
 # This is not used anywhere. But is useful for debugging and version control.
-template_version: 1.0
+template_version: v1.0.0
 xrst_version: v1.0.0-beta.0 - v1.0.0-beta.2
 
 ## Run specific information
@@ -18,9 +18,14 @@ data_paths:
 #  - runs: [20, 30]
 #    path: /path/to/another/location/
 
+# Photon energy
 photon_energy:
 - runs: [0, .inf]
   energy: 10   # in keV
+# Pump pulse energy, in uJ
+pump_energy:
+- runs: [0, .inf]
+  energy: 1 # in uJ
 # Sample types
 samples:
 - runs: [0, .inf]
