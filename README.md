@@ -95,6 +95,9 @@ This notebook is used typically on a knife-edge scan, which is used to determine
 #### `Mask_Maker.ipynb`
 This notebook combines three types of runs, along with pre-defined masks to generate a combined mask (`cmask`), which is then saved to a specific directory so that it is applied in the data stream. More details inside the notebook.
 
+#### `Power_Scan.ipynb`
+This notebook is used to plot pump-probe data for different pump powers, which are usually set manually and saved to some EPICS PV. The most efficient way to do this is to compare to IAM computations and determine a percent excitation from the data. That needs to be done manually.
+
 #### `Pump_Probe.ipynb`
 This notebook is the main data plotter, once everything has been calibrated and is working corretly. It takes pump-probe runs, filteres the data, re-bins the time points and plots the percent difference signal, plus q- and t-lineouts.
 
