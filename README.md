@@ -49,7 +49,9 @@ Once everything is done, check if it worked by hitting the "New Launcher" `+` ic
 7. Add sample ADU cutoff to producer
 8. Re-process any sample runs with new producer settings
 9. Run Compare_Runs notebook on dark, background, Ne, SF6, and sample for baseline measurements.
-10. Run pump probe notebook on sample data.
+10. Take pump probe data, use Pump_Probe notebook to find t0.
+11. Take power scan, use Power_Scan notebook to determine optimal pump power.
+12. Refine time points, set optimal pump power, take data, use Pump_Probe notebook for analyzing data.
 
 ### Notes
  - A pedestal is a dark run which is used to set specific detector parameters. Usually this is run once.
