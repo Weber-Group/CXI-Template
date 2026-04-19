@@ -49,7 +49,9 @@ Once everything is done, check if it worked by hitting the "New Launcher" `+` ic
 7. Add sample ADU cutoff to producer
 8. Re-process any sample runs with new producer settings
 9. Run Compare_Runs notebook on dark, background, Ne, SF6, and sample for baseline measurements.
-10. Run pump probe notebook on sample data.
+10. Take pump probe data, use Pump_Probe notebook to find t0.
+11. Take power scan, use Power_Scan notebook to determine optimal pump power.
+12. Refine time points, set optimal pump power, take data, use Pump_Probe notebook for analyzing data.
 
 ### Notes
  - A pedestal is a dark run which is used to set specific detector parameters. Usually this is run once.
@@ -92,6 +94,9 @@ This notebook is used typically on a knife-edge scan, which is used to determine
 
 #### `Mask_Maker.ipynb`
 This notebook combines three types of runs, along with pre-defined masks to generate a combined mask (`cmask`), which is then saved to a specific directory so that it is applied in the data stream. More details inside the notebook.
+
+#### `Power_Scan.ipynb`
+This notebook is used to plot pump-probe data for different pump powers, which are usually set manually and saved to some EPICS PV. The most efficient way to do this is to compare to IAM computations and determine a percent excitation from the data. That needs to be done manually.
 
 #### `Pump_Probe.ipynb`
 This notebook is the main data plotter, once everything has been calibrated and is working corretly. It takes pump-probe runs, filteres the data, re-bins the time points and plots the percent difference signal, plus q- and t-lineouts.
