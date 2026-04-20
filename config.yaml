@@ -6,7 +6,7 @@ expNumber: EXPERIMENT # Enter the full run number here, e.g. cxil1037623.
 expDir: /sdf/data/lcls/ds/cxi/EXPERIMENT/ # Full path to the experimental directory here e.g/ /sdf/data/lcls/ds/cxi/cxil1037623/.
 
 # This is not used anywhere. But is useful for debugging and version control.
-template_version: v1.1.1
+template_version: v1.1.2
 xrst_version: v1.0.0-beta.0 - v1.0.1
 
 ## Run specific information
